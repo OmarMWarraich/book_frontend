@@ -7,10 +7,11 @@ const BookGridTile = ({
     price,
     description,
     cover_image,
-    discount_rate
+    discount_rate,
+    onPress,
 }) => {
     return (
-        <TouchableOpacity style={Styles.gridItem}>
+        <TouchableOpacity style={Styles.gridItem} onPress={onPress}>
             <BookCard
                 id={id}
                 title={title}

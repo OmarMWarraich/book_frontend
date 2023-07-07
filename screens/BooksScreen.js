@@ -2,7 +2,7 @@ import { FlatList } from 'react-native';
 
 import BookGridTile from '../components/BookGridTile';
 
-const Books = [
+export const books = [
     {
         id: 1,
         title: "레이블라우스",
@@ -21,24 +21,30 @@ const Books = [
     },
 ];
 
-const renderGridItem = (itemData) => {
-    return (
-        <BookGridTile
-            id={itemData.item.id}
-            title={itemData.item.title}
-            price={itemData.item.price}
-            description={itemData.item.description}
-            cover_image={itemData.item.cover_image}
-            discount_rate={itemData.item.discount_rate}
-        />
-    );
-}
 
-const BooksScreen = () => {
+const BooksScreen = ({navigation}) => {
+    const renderGridItem = (itemData) => {
+        const pressHandler = () => {
+            navigation.navigate('BookDetails', { bookId: itemData.item.id });
+        };
+        return (
+            <BookGridTile
+                id={itemData.item.id}
+                title={itemData.item.title}
+                price={itemData.item.price}
+                description={itemData.item.description}
+                cover_image={itemData.item.cover_image}
+                discount_rate={itemData.item.discount_rate}
+                onPress={pressHandler}
+            />
+        );
+    }
+    
+
     return (
         <FlatList
             keyExtractor={(item, index) => item.id.toString()}
-            data={Books}
+            data={books}
             renderItem={renderGridItem}
             numColumns={2}
         />
