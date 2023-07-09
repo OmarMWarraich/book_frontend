@@ -5,12 +5,12 @@ const BookCard = ({
     title,
     price,
     description,
-    cover_image,
+    image_url,
     discount_rate
  }) => {
     return (
         <View style={Styles.cardContainer}>
-            <Image style={Styles.cardImage} source={{ uri: cover_image }} />
+            <Image style={Styles.cardImage} source={{ uri: image_url }} />
             <Text style={Styles.cardTitle}>{title}</Text>
             <View style={Styles.textContainer}>
                 <Text style={{ marginBottom: 10, color: 'red' }}>

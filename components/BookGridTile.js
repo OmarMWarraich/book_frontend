@@ -6,7 +6,7 @@ const BookGridTile = ({
     title,
     price,
     description,
-    cover_image,
+    image_url,
     discount_rate,
     onPress,
 }) => {
@@ -17,7 +17,7 @@ const BookGridTile = ({
                 title={title}
                 price={price}
                 description={description}
-                cover_image={cover_image}
+                image_url={image_url}
                 discount_rate={discount_rate}
             />
         </TouchableOpacity>

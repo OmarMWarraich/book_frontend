@@ -1,20 +1,24 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
-import { books } from './BooksScreen'
+
 
 const BookDetailsScreen = ({ route, navigation }) => {
+/*     const [books, setBooks] = useState([]); */
     const bId  = route.params.bookId;
-    const selectedBook = books.find(book => book.id === bId);
 
-    useLayoutEffect(() => {
+
+/*     const selectedBook = books.find(book => book.id === bId);
+    console.log(selectedBook); */
+/*     useLayoutEffect(() => {
         navigation.setOptions({
             title: selectedBook.title,
         });
-    }, [navigation]);
+    }, [navigation]); */
 
     return (
         <View>
-            <Image style={{ width: '100%', height: 300 }} source={{ uri: selectedBook.cover_image }} />
+            <Text>Book Details Screen{bId}</Text>
+            
         </View>
     );
 }
