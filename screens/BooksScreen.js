@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
-
 import BookGridTile from '../components/BookGridTile';
+import getBooks from '../utils/api';
 
-export const books = [
+/* export const books = [
     {
         id: 1,
         title: "레이블라우스",
@@ -19,10 +20,16 @@ export const books = [
         cover_image: "https://upload.wikimedia.org/wikipedia/en/3/30/Hobbit_cover.JPG",
         discount_rate: 10
     },
-];
+]; */
 
 
 const BooksScreen = ({navigation}) => {
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        getBooks().then((books) => setBooks(books));
+    }, []);
+
     const renderGridItem = (itemData) => {
         const pressHandler = () => {
             navigation.navigate('BookDetails', { bookId: itemData.item.id });
