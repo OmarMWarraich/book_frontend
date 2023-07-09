@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native';
 import BookGridTile from '../components/BookGridTile';
-import getBooks from '../utils/api';
+import { fetchBooks } from '../slice/bookSlice';
+
 
 const BooksScreen = ({navigation}) => {
-    const [books, setBooks] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getBooks().then((books) => setBooks(books));
+        dispatch(fetchBooks());
     }, []);
+
+    const books = useSelector((state) => state.books.books);
 
     const renderGridItem = (itemData) => {
         const pressHandler = () => {
