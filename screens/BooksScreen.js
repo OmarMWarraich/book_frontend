@@ -1,18 +1,43 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, ActivityIndicator, RefreshControl  } from 'react-native';
 import BookGridTile from '../components/BookGridTile';
 import { fetchBooks } from '../slice/bookSlice';
 
 
 const BooksScreen = ({navigation}) => {
     const dispatch = useDispatch();
+    const books = useSelector((state) => state.books.books);
+    
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ isRefreshing, setIsRefreshing ] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchBooks());
+        fetchData();
     }, []);
 
-    const books = useSelector((state) => state.books.books);
+    const fetchData = async () => {
+        setIsLoading(true);
+        try {
+            await dispatch(fetchBooks());
+        } catch (err) {
+            console.log(err);
+        }  finally {
+            setIsLoading(false);
+        }
+    }
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        try {
+            await dispatch(fetchBooks());
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setIsRefreshing(false);
+        }
+    }
+
 
     const renderGridItem = (itemData) => {
         const pressHandler = () => {
@@ -38,6 +63,17 @@ const BooksScreen = ({navigation}) => {
             data={books}
             renderItem={renderGridItem}
             numColumns={2}
+            refreshControl={
+                <RefreshControl
+                    refreshing={isRefreshing}
+                    onRefresh={handleRefresh}
+                />
+            }
+            ListFooterComponent={
+                isLoading && <ActivityIndicator size="large" color="red" />
+            }
+            onEndReached={fetchData}
+            onEndReachedThreshold={0.8}
         />
     );
 }
