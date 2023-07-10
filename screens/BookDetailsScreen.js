@@ -17,7 +17,7 @@ const BookDetailsScreen = ({ route, navigation }) => {
 
     return (
         <SafeAreaView>
-            <Image source={{ uri: `http://localhost:3000${selectedBook.image_url}` }} style={{ width: '100%', height: 300 }} />
+            <Image source={{ uri: `https://afternoon-castle-25737-b28e8fca3464.herokuapp.com${selectedBook.image_url}` }} style={{ width: '100%', height: 300 }} />
             <View style={{ margin: 10 }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{selectedBook.title}</Text>
                 </View>

@@ -49,7 +49,7 @@ const BooksScreen = ({navigation}) => {
                 title={itemData.item.title}
                 price={itemData.item.price}
                 description={itemData.item.description}
-                image_url={`http://localhost:3000${itemData.item.image_url}`}
+                image_url={`https://afternoon-castle-25737-b28e8fca3464.herokuapp.com${itemData.item.image_url}`}
                 discount_rate={itemData.item.discount_rate}
                 onPress={pressHandler}
             />
