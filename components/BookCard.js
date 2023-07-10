@@ -17,7 +17,7 @@ const BookCard = ({
                     {discount_rate}%
                 </Text>
                 <Text style={{ marginBottom: 10 }}>
-                    {price}원
+                    {price} 원
                 </Text>
             </View>
         </View>
@@ -34,15 +34,18 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 10,
-        height: 70,
+        marginTop: 20,
+        height: 40,
+        fontSize: 14,
     },
     cardImage: {
         width: '100%',
         height: 187,
     },
     cardTitle: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
         marginLeft: 10,
+        marginTop: 10,
     },
 });

@@ -46,12 +46,18 @@ const BooksScreen = ({navigation}) => {
         const pressHandler = () => {
             navigation.navigate('BookDetails', { bookId: itemData.item.id });
         };
+
+        const formattedPrice =
+        typeof itemData.item.price !== 'undefined' && !isNaN(itemData.item.price)
+          ? Number(itemData.item.price).toLocaleString()
+          : '';
+
         return (
             <BookGridTile
                 key={itemData.item.id.toString()}
                 id={itemData.item.id}
                 title={itemData.item.title}
-                price={itemData.item.price}
+                price={formattedPrice}
                 description={itemData.item.description}
                 image_url={`https://afternoon-castle-25737-b28e8fca3464.herokuapp.com${itemData.item.image_url}`}
                 discount_rate={itemData.item.discount_rate}
