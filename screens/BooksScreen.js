@@ -38,6 +38,9 @@ const BooksScreen = ({navigation}) => {
         }
     }
 
+    const uniqueBooks = Array.from(new Set(books.map((item) => item.id))).map((id) =>
+    books.find((item) => item.id === id)
+  );
 
     const renderGridItem = (itemData) => {
         const pressHandler = () => {
@@ -45,6 +48,7 @@ const BooksScreen = ({navigation}) => {
         };
         return (
             <BookGridTile
+                key={itemData.item.id.toString()}
                 id={itemData.item.id}
                 title={itemData.item.title}
                 price={itemData.item.price}
@@ -60,7 +64,7 @@ const BooksScreen = ({navigation}) => {
     return (
         <FlatList
             keyExtractor={(item, index) => item.id.toString()}
-            data={books}
+            data={uniqueBooks}
             renderItem={renderGridItem}
             numColumns={2}
             refreshControl={

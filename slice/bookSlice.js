@@ -16,15 +16,16 @@ export const bookSlice = createSlice({
     name: 'books',
     initialState,
     reducers: {},
-    extraReducers: {
-        [fetchBooks.pending]: (state, action) => {
+    extraReducers: (builder) => {
+        builder
+          .addCase(fetchBooks.pending, (state, action) => {
             state.status = 'loading';
-        },
-        [fetchBooks.fulfilled]: (state, action) => {
+          })
+          .addCase(fetchBooks.fulfilled, (state, action) => {
             state.status = 'succeeded';
             state.books = state.books.concat(action.payload);
-        }
-    }
+          });
+      },
 });
 
 export default bookSlice.reducer;
